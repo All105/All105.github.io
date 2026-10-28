@@ -1,0 +1,16 @@
+---
+layout: layouts/base.njk
+---
+{%- set t = i18n[lang] -%}
+{%- set heroTitle = title -%}
+{%- set crumbs = [[t.nav.home, routes.home[lang]], [title, routes[pageKey][lang]]] -%}
+{% include "partials/page-hero.njk" %}
+<section class="section">
+  <div class="container container--narrow prose legal">
+    {%- if not site.legal.reviewed_by_lawyer %}
+    <p class="review-banner" role="note">{{ t.legalReview }}</p>
+    {%- endif %}
+    <p class="muted">{{ "Effective date" if lang == "en" else "Fecha de entrada en vigor" }}: {% fill site.legal.effective_date, ("date" if lang == "en" else "fecha") %}</p>
+    {{ content | safe }}
+  </div>
+</section>

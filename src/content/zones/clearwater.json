@@ -1,0 +1,23 @@
+{
+  "id": "clearwater",
+  "order": 1,
+  "has_page": true,
+  "name": "Clearwater",
+  "county": "Pinellas County",
+  "slug": "clearwater",
+  "nearby": [
+    "Dunedin",
+    "Largo",
+    "Safety Harbor",
+    "Palm Harbor",
+    "St. Petersburg"
+  ],
+  "intro_en": "House, office, rental and post-construction cleaning in Clearwater and the rest of Pinellas County.",
+  "intro_es": "Limpieza de casas, oficinas, alquileres y post-obra en Clearwater y el resto del condado de Pinellas.",
+  "body_en": "From beach-area vacation rentals to homes and offices, we clean in Clearwater every day, 24 hours. Send us your ZIP code with your quote request and we will confirm availability.",
+  "body_es": "Desde alquileres vacacionales cerca de la playa hasta casas y oficinas, limpiamos en Clearwater todos los días, las 24 horas. Envíanos tu código postal con la solicitud y te confirmamos disponibilidad.",
+  "seo_title_en": "Cleaning Services in Clearwater, FL | All Clean Group",
+  "seo_title_es": "Servicio de limpieza en Clearwater, FL | All Clean Group",
+  "seo_description_en": "Residential, commercial, move-out, Airbnb and deep cleaning in Clearwater and Pinellas County, FL. Every day, 24 hours. Request a quote.",
+  "seo_description_es": "Limpieza residencial, comercial, de mudanza, Airbnb y profunda en Clearwater y el condado de Pinellas, FL. Todos los días, 24 h. Pide cotización."
+}

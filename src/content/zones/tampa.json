@@ -1,0 +1,22 @@
+{
+  "id": "tampa",
+  "order": 2,
+  "has_page": true,
+  "name": "Tampa",
+  "county": "Hillsborough County",
+  "slug": "tampa",
+  "nearby": [
+    "Brandon",
+    "Riverview",
+    "Wesley Chapel",
+    "Plant City"
+  ],
+  "intro_en": "Cleaning for homes, businesses, rentals and job sites in Tampa and Hillsborough County.",
+  "intro_es": "Limpieza de casas, negocios, alquileres y obras en Tampa y el condado de Hillsborough.",
+  "body_en": "We work across Tampa, at the hours that suit you, including nights and weekends. Include your ZIP code in the quote form and we will confirm coverage.",
+  "body_es": "Trabajamos en todo Tampa, en el horario que te convenga, incluidas noches y fines de semana. Incluye tu código postal en el formulario y te confirmamos la cobertura.",
+  "seo_title_en": "Cleaning Services in Tampa, FL | All Clean Group",
+  "seo_title_es": "Servicio de limpieza en Tampa, FL | All Clean Group",
+  "seo_description_en": "House, office, post-construction, move-in/out and vacation rental cleaning in Tampa and Hillsborough County, FL. Available 24/7. Get a quote.",
+  "seo_description_es": "Limpieza de casas, oficinas, post-obra, mudanzas y alquileres vacacionales en Tampa y el condado de Hillsborough, FL. 24/7. Pide cotización."
+}

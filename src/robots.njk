@@ -1,0 +1,13 @@
+---
+permalink: /robots.txt
+eleventyExcludeFromCollections: true
+---
+User-agent: *
+{%- if site.noindex %}
+Disallow: /
+{%- else %}
+Allow: /
+Disallow: /admin/
+{%- endif %}
+
+Sitemap: {{ '/sitemap.xml' | absUrl }}

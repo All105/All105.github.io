@@ -1,0 +1,31 @@
+---
+pagination: { data: langs, size: 1, alias: lang }
+layout: layouts/base.njk
+pageKey: home
+carousel: true
+ldFaq: true
+bodyClass: page-home
+permalink: "{{ routes.home[lang] }}"
+eleventyComputed:
+  seoTitle: "{{ home['seo_title_' + lang] }}"
+  seoDescription: "{{ home['seo_description_' + lang] }}"
+---
+{%- set t = i18n[lang] -%}
+{% include "partials/carousel.njk" %}
+<section class="section section--intro" aria-labelledby="intro-title">
+  <div class="container">
+    <h2 id="intro-title" class="section-title">{{ t.services.title }}</h2>
+    <p class="section-lead">{{ home['intro_text_' + lang] }}</p>
+    {% include "partials/service-grid.njk" %}
+  </div>
+</section>
+{% include "partials/steps.njk" %}
+{% include "partials/zones.njk" %}
+{% include "partials/faq.njk" %}
+<section class="section section--quote" id="quote" aria-labelledby="quote-title">
+  <div class="container container--narrow">
+    <h2 id="quote-title" class="section-title">{{ home['quote_title_' + lang] }}</h2>
+    <p class="section-lead">{{ home['quote_text_' + lang] }}</p>
+    {% include "partials/quote-form.njk" %}
+  </div>
+</section>

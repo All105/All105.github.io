@@ -1,0 +1,32 @@
+---
+pagination: { data: langs, size: 1, alias: lang }
+layout: layouts/base.njk
+pageKey: areas
+permalink: "{{ routes.areas[lang] }}"
+eleventyComputed:
+  seoTitle: "{{ seo.areas[lang][0] }}"
+  seoDescription: "{{ seo.areas[lang][1] }}"
+---
+{%- set t = i18n[lang] -%}
+{%- set heroTitle = t.areas.title -%}
+{%- set heroLead = home['zones_text_' + lang] -%}
+{%- set crumbs = [[t.nav.home, routes.home[lang]], [t.nav.areas, routes.areas[lang]]] -%}
+{% include "partials/page-hero.njk" %}
+<section class="section">
+  <div class="container">
+    <ul class="zone-grid">
+      {%- for z in zones %}
+      <li class="zone-card">
+        <h2>{% if z.has_page %}<a href="{{ routes['zone:' + z.id][lang] }}">{{ z.name }}</a>{% else %}{{ z.name }}{% endif %}</h2>
+        <p class="zone-county">{{ z.county }}</p>
+        <p>{{ z['intro_' + lang] }}</p>
+        {%- if z.nearby and z.nearby.length %}
+        <p class="zone-nearby"><strong>{{ t.areas.nearby }}:</strong> {{ z.nearby | join(", ") }}</p>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+    <p class="zone-corridor">{{ t.areas.corridor }}</p>
+    <p class="center"><a class="btn btn-primary btn-lg" href="{{ routes.quote[lang] }}">{{ t.carousel.quote }}</a></p>
+  </div>
+</section>

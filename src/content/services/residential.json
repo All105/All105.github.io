@@ -1,0 +1,40 @@
+{
+  "id": "residential",
+  "order": 1,
+  "show_in_carousel": true,
+  "slug_en": "residential-cleaning",
+  "slug_es": "limpieza-residencial",
+  "category_en": "Homes",
+  "category_es": "Hogares",
+  "name_en": "Residential cleaning",
+  "name_es": "Limpieza residencial",
+  "title1_en": "Residential",
+  "title2_en": "cleaning",
+  "title1_es": "Limpieza",
+  "title2_es": "residencial",
+  "summary_en": "Regular or one-time cleaning for houses, apartments and condos: kitchens, bathrooms, floors, dusting and the rooms you choose.",
+  "summary_es": "Limpieza puntual o periódica para casas, apartamentos y condominios: cocina, baños, pisos, polvo y las habitaciones que elijas.",
+  "includes_en": [
+    "Kitchen surfaces and appliance exteriors",
+    "Bathrooms: toilet, shower, tub, sink and mirrors",
+    "Dusting of reachable surfaces",
+    "Vacuuming and mopping of floors",
+    "Trash removal to your outdoor bin"
+  ],
+  "includes_es": [
+    "Superficies de cocina y exterior de electrodomésticos",
+    "Baños: inodoro, ducha, bañera, lavabo y espejos",
+    "Limpieza de polvo en superficies accesibles",
+    "Aspirado y trapeado de pisos",
+    "Retiro de basura a tu contenedor exterior"
+  ],
+  "body_en": "Whether you need a one-time visit or a recurring schedule (weekly, every two weeks or monthly), we adapt the cleaning to your home and your routine.\n\nTell us the number of bedrooms and bathrooms, any pets, and the areas that matter most to you. We will confirm the scope and send you a quote in US dollars.",
+  "body_es": "Tanto si necesitas una visita puntual como un servicio periódico (semanal, cada dos semanas o mensual), adaptamos la limpieza a tu casa y a tu rutina.\n\nIndícanos cuántas habitaciones y baños tiene la vivienda, si hay mascotas y qué zonas son más importantes para ti. Confirmamos el alcance y te enviamos una cotización en dólares.",
+  "seo_title_en": "Residential House Cleaning in Clearwater, Tampa & Orlando | All Clean Group",
+  "seo_title_es": "Limpieza de casas en Clearwater, Tampa y Orlando | All Clean Group",
+  "seo_description_en": "One-time or recurring house, apartment and condo cleaning from Clearwater to Orlando, FL. Available every day, 24 hours. Request your quote.",
+  "seo_description_es": "Limpieza puntual o periódica de casas, apartamentos y condominios de Clearwater a Orlando, FL. Todos los días, 24 horas. Pide tu cotización.",
+  "image_alt_en": "Placeholder: photo of a clean living room",
+  "image_alt_es": "Marcador: foto de una sala limpia",
+  "image": "/assets/img/placeholders/residential.svg"
+}

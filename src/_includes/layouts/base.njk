@@ -1,0 +1,50 @@
+{%- set t = i18n[lang] -%}
+{%- set alt = routes[pageKey] -%}
+{%- set other = t.otherLang -%}
+<!doctype html>
+<html lang="{{ lang }}-US" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ seoTitle }}</title>
+  <meta name="description" content="{{ seoDescription }}">
+  {%- if alt.noindex or noindex or site.noindex %}
+  <meta name="robots" content="noindex, follow">
+  {%- endif %}
+  <link rel="canonical" href="{{ alt[lang] | absUrl }}">
+  <link rel="alternate" hreflang="en-US" href="{{ alt.en | absUrl }}">
+  <link rel="alternate" hreflang="es-US" href="{{ alt.es | absUrl }}">
+  <link rel="alternate" hreflang="x-default" href="{{ '/' | absUrl }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.business_name }}">
+  <meta property="og:title" content="{{ seoTitle }}">
+  <meta property="og:description" content="{{ seoDescription }}">
+  <meta property="og:url" content="{{ alt[lang] | absUrl }}">
+  <meta property="og:locale" content="{{ 'en_US' if lang == 'en' else 'es_US' }}">
+  <meta property="og:locale:alternate" content="{{ 'es_US' if lang == 'en' else 'en_US' }}">
+  <meta property="og:image" content="{{ site.og_image | absUrl }}">
+  <meta name="theme-color" content="#0b63a5">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/main.css?v={{ buildId }}">
+  <noscript><link rel="stylesheet" href="/assets/css/noscript.css?v={{ buildId }}"></noscript>
+  {%- if carousel %}
+  <script src="/assets/vendor/gsap.min.js?v={{ buildId }}" defer></script>
+  {%- endif %}
+  <script src="/assets/js/main.js?v={{ buildId }}" defer></script>
+  <script type="application/ld+json">{{ lang | ldBusiness | jsonld | safe }}</script>
+  {%- if ldFaq %}
+  <script type="application/ld+json">{{ lang | ldFaq | jsonld | safe }}</script>
+  {%- endif %}
+
+</head>
+<body class="{{ bodyClass }}" data-lang="{{ lang }}"{% if site.integrations.cf_analytics_token %} data-cf-token="{{ site.integrations.cf_analytics_token }}"{% endif %}>
+  <a class="skip-link" href="#main">{{ t.skip }}</a>
+  {% include "partials/header.njk" %}
+  <main id="main" tabindex="-1">
+    {{ content | safe }}
+  </main>
+  {% include "partials/footer.njk" %}
+  {% include "partials/consent.njk" %}
+</body>
+</html>

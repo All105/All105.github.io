@@ -1,0 +1,58 @@
+{%- from "partials/icons.njk" import icon -%}
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <p class="footer-brand"><span class="svg-container">{{ icon("logo") }}</span> {{ site.business_name }}</p>
+      <p>{{ site['hours_' + lang] }}</p>
+      <p><a href="tel:{{ site.phone }}">{{ site.phone_display | nbphone }}</a><br><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+      <p class="footer-note">{{ t.footer.serviceArea }}</p>
+    </div>
+    <nav aria-label="{{ t.nav.services }}">
+      <p class="footer-title">{{ t.nav.services }}</p>
+      <ul>
+        {%- for s in services %}
+        <li><a href="{{ routes['service:' + s.id][lang] }}">{{ s['name_' + lang] }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+    <nav aria-label="{{ t.nav.areas }}">
+      <p class="footer-title">{{ t.nav.areas }}</p>
+      <ul>
+        {%- for z in zones %}{% if z.has_page %}
+        <li><a href="{{ routes['zone:' + z.id][lang] }}">{{ z.name }}</a></li>
+        {%- endif %}{% endfor %}
+      </ul>
+    </nav>
+    <nav aria-label="{{ t.footer.legal }}">
+      <p class="footer-title">{{ t.footer.legal }}</p>
+      <ul>
+        <li><a href="{{ routes.privacy[lang] }}">{{ t.footer.privacy }}</a></li>
+        <li><a href="{{ routes.terms[lang] }}">{{ t.footer.terms }}</a></li>
+        <li><a href="{{ routes.accessibility[lang] }}">{{ t.footer.accessibility }}</a></li>
+        {%- if site.integrations.cf_analytics_token %}
+        <li><button type="button" class="link-button" data-open-consent>{{ t.footer.analytics }}</button></li>
+        {%- endif %}
+      </ul>
+      {%- set socials = [["facebook", "Facebook"], ["instagram", "Instagram"], ["tiktok", "TikTok"], ["google_business", "Google"]] %}
+      {%- set hasSocial = site.social.facebook or site.social.instagram or site.social.tiktok or site.social.google_business %}
+      {%- if hasSocial %}
+      <p class="footer-title">{{ t.footer.follow }}</p>
+      <ul class="social">
+        {%- for s in socials %}{% if site.social[s[0]] %}
+        <li><a href="{{ site.social[s[0]] }}" rel="noopener">{{ s[1] }}</a></li>
+        {%- endif %}{% endfor %}
+      </ul>
+      {%- endif %}
+    </nav>
+  </div>
+  <div class="container footer-bottom">
+    <p>© {{ "now" | year }} {{ site.legal.legal_name or site.business_name }}. {{ t.footer.rights }}</p>
+    {%- if site.credentials.licensed or site.credentials.insured or site.credentials.bonded %}
+    <p class="credentials">
+      {%- if site.credentials.licensed %}{{ "Licensed" if lang == "en" else "Con licencia" }}{% if site.credentials.license_number %} ({{ site.credentials.license_number }}){% endif %}{% endif %}
+      {%- if site.credentials.insured %} · {{ "Insured" if lang == "en" else "Asegurados" }}{% endif %}
+      {%- if site.credentials.bonded %} · {{ "Bonded" if lang == "en" else "Con fianza" }}{% endif %}
+    </p>
+    {%- endif %}
+  </div>
+</footer>

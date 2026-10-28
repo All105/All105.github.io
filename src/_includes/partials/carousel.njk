@@ -1,0 +1,53 @@
+{%- from "partials/icons.njk" import icon -%}
+{%- set first = carouselServices[0] -%}
+{%- set waHref = "https://wa.me/" + site.whatsapp if site.whatsapp else "tel:" + site.phone -%}
+{%- set waLabel = t.carousel.whatsapp if site.whatsapp else t.carousel.call -%}
+{%- macro detailsPanel(id, s, hidden) -%}
+<div class="details" id="{{ id }}"{% if hidden %} aria-hidden="true" inert{% endif %}>
+  <div class="place-box"><div class="text" data-field="category">{{ s['category_' + lang] }}</div></div>
+  <div class="title-box-1"><div class="title-1" data-field="title1">{{ s['title1_' + lang] }}</div></div>
+  <div class="title-box-2"><div class="title-2" data-field="title2">{{ s['title2_' + lang] }}</div></div>
+  <div class="desc" data-field="desc">{{ s['summary_' + lang] }}</div>
+  <div class="cta">
+    <a class="bookmark" href="{{ waHref }}" aria-label="{{ waLabel }}"{% if site.whatsapp %} rel="noopener" target="_blank"{% endif %}>
+      {%- if site.whatsapp %}{{ icon("whatsapp", "icon icon-20") }}{% else %}{{ icon("phone", "icon icon-20") }}{% endif -%}
+    </a>
+    <a class="discover" data-field="quote" href="{{ routes.quote[lang] }}?service={{ s.id }}#quote-form">{{ t.carousel.quote }}</a>
+  </div>
+  <a class="details-more" data-field="more" href="{{ routes['service:' + s.id][lang] }}">{{ t.carousel.more }} <span aria-hidden="true">→</span></a>
+</div>
+{%- endmacro -%}
+<section class="hero" id="hero" aria-roledescription="carousel" aria-label="{{ t.carousel.label }}" data-autoplay="6">
+  <div class="indicator" id="indicator" aria-hidden="true"></div>
+  <h1 class="hero-eyebrow">{{ home['intro_title_' + lang] }}</h1>
+  <div id="demo" class="cards">
+    {%- for s in carouselServices %}
+    <div class="card" id="card{{ loop.index0 }}" data-i="{{ loop.index0 }}" role="group" aria-roledescription="{{ t.carousel.slide }}" aria-label="{{ loop.index }} {{ t.carousel.of }} {{ carouselServices.length }}: {{ s['name_' + lang] }}"{% if not loop.first %} aria-hidden="true"{% endif %}
+      data-category="{{ s['category_' + lang] }}" data-title1="{{ s['title1_' + lang] }}" data-title2="{{ s['title2_' + lang] }}" data-desc="{{ s['summary_' + lang] }}"
+      data-quote="{{ routes.quote[lang] }}?service={{ s.id }}#quote-form" data-more="{{ routes['service:' + s.id][lang] }}">
+      {% image s.image, s['image_alt_' + lang], { eager: loop.first, visible: loop.index0 < 5, cls: "card-img" } %}
+    </div>
+    <div class="card-content" id="card-content-{{ loop.index0 }}" data-i="{{ loop.index0 }}" aria-hidden="true">
+      <div class="content-start"></div>
+      <div class="content-place">{{ s['category_' + lang] }}</div>
+      <div class="content-title-1">{{ s['title1_' + lang] }}</div>
+      <div class="content-title-2">{{ s['title2_' + lang] }}</div>
+    </div>
+    {%- endfor %}
+  </div>
+  {{ detailsPanel("details-even", first, false) }}
+  {{ detailsPanel("details-odd", first, true) }}
+  <div class="pagination" id="pagination" hidden>
+    <button class="arrow arrow-left" type="button" aria-controls="demo" aria-label="{{ t.carousel.prev }}">{{ icon("left", "icon icon-24") }}</button>
+    <button class="arrow arrow-right" type="button" aria-controls="demo" aria-label="{{ t.carousel.next }}">{{ icon("right", "icon icon-24") }}</button>
+    <button class="arrow arrow-play" type="button" aria-controls="demo" aria-pressed="false" data-label-pause="{{ t.carousel.pause }}" data-label-play="{{ t.carousel.play }}" aria-label="{{ t.carousel.pause }}">{{ icon("pause", "icon icon-20") }}{{ icon("play", "icon icon-20") }}</button>
+    <div class="progress-sub-container" aria-hidden="true">
+      <div class="progress-sub-background"><div class="progress-sub-foreground"></div></div>
+    </div>
+    <div class="slide-numbers" id="slide-numbers" aria-hidden="true">
+      {%- for s in carouselServices %}<div class="item" id="slide-item-{{ loop.index0 }}">{{ loop.index | pad2 }}</div>{% endfor -%}
+    </div>
+  </div>
+  <p class="visually-hidden" id="hero-status" aria-live="polite" aria-atomic="true"></p>
+  <div class="cover" aria-hidden="true"></div>
+</section>

@@ -1,0 +1,14 @@
+---
+pagination: { data: langs, size: 1, alias: lang }
+layout: layouts/base.njk
+pageKey: thanks
+permalink: "{{ routes.thanks[lang] }}"
+eleventyComputed:
+  seoTitle: "{{ seo.thanks[lang][0] }}"
+  seoDescription: "{{ seo.thanks[lang][1] }}"
+---
+{%- set t = i18n[lang] -%}
+{%- set heroTitle = t.thanks.title -%}
+{%- set heroLead = t.thanks.text -%}
+{% include "partials/page-hero.njk" %}
+<section class="section"><div class="container"><p><a class="btn btn-primary" href="{{ routes.home[lang] }}">{{ t.nav.home }}</a> <a class="btn btn-ghost" href="tel:{{ site.phone }}">{{ site.phone_display | nbphone }}</a></p></div></section>

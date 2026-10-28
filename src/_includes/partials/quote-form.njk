@@ -1,0 +1,70 @@
+{%- set f = t.form -%}
+{%- set privacyLink = '<a href="' + routes.privacy[lang] + '" target="_blank" rel="noopener">' + f.privacyLink + '</a>' -%}
+<form class="quote-form" id="quote-form" action="{{ site.integrations.quote_endpoint }}" method="post" novalidate
+  data-sitekey="{{ site.integrations.turnstile_sitekey }}" data-thanks="{{ routes.thanks[lang] }}">
+  <div class="form-errors" id="form-errors" role="alert" tabindex="-1" hidden></div>
+  <div class="form-grid">
+    <div class="field">
+      <label for="f-name">{{ f.name }}</label>
+      <input id="f-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="100" aria-describedby="err-name">
+      <p class="field-error" id="err-name" hidden></p>
+    </div>
+    <div class="field">
+      <label for="f-phone">{{ f.phone }}</label>
+      <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20" aria-describedby="hint-phone err-phone">
+      <p class="field-hint" id="hint-phone">{{ f.phoneHint }}</p>
+      <p class="field-error" id="err-phone" hidden></p>
+    </div>
+    <div class="field">
+      <label for="f-email">{{ f.email }}</label>
+      <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="254" aria-describedby="err-email">
+      <p class="field-error" id="err-email" hidden></p>
+    </div>
+    <div class="field">
+      <label for="f-service">{{ f.service }}</label>
+      <select id="f-service" name="service" required aria-describedby="err-service">
+        <option value="">{{ f.choose }}</option>
+        {%- for s in services %}
+        <option value="{{ s.id }}"{% if preselect == s.id %} selected{% endif %}>{{ s['name_' + lang] }}</option>
+        {%- endfor %}
+        <option value="other"{% if preselect == "other" %} selected{% endif %}>{{ t.services.other }}</option>
+      </select>
+      <p class="field-error" id="err-service" hidden></p>
+    </div>
+    <div class="field">
+      <label for="f-zip">{{ f.zip }}</label>
+      <input id="f-zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" required pattern="[0-9]{5}" maxlength="5" aria-describedby="hint-zip err-zip">
+      <p class="field-hint" id="hint-zip">{{ f.zipHint }}</p>
+      <p class="field-error" id="err-zip" hidden></p>
+    </div>
+    <div class="field field--full">
+      <label for="f-message">{{ f.message }} <span class="optional">({{ f.optional }})</span></label>
+      <textarea id="f-message" name="message" rows="5" maxlength="2000" aria-describedby="hint-message err-message"></textarea>
+      <p class="field-hint" id="hint-message">{{ f.messageHint }}</p>
+      <p class="field-error" id="err-message" hidden></p>
+    </div>
+  </div>
+  <div class="hp" aria-hidden="true">
+    <label for="f-website">{{ f.honeypot }}</label>
+    <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+  </div>
+  <div class="field field--check">
+    <input id="f-privacy" name="privacy" type="checkbox" value="yes" required aria-describedby="err-privacy">
+    <label for="f-privacy">{{ f.privacy | replace("{privacy}", privacyLink) | safe }}</label>
+    <p class="field-error" id="err-privacy" hidden></p>
+  </div>
+  <div class="field field--check">
+    <input id="f-sms" name="sms_consent" type="checkbox" value="yes">
+    <label for="f-sms">{{ f.sms }} <span class="optional">({{ f.optional }})</span></label>
+  </div>
+  <input type="hidden" name="lang" value="{{ lang }}">
+  <div class="turnstile" id="turnstile"></div>
+  <p class="field-error" id="err-captcha" hidden></p>
+  <button class="btn btn-primary btn-lg" type="submit" data-sending="{{ f.sending }}">{{ f.submit }}</button>
+  <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+  <noscript><p class="form-nojs">{{ f.noJs }} <a href="tel:{{ site.phone }}">{{ site.phone_display | nbphone }}</a> · <a href="mailto:{{ site.email }}">{{ site.email }}</a></p></noscript>
+  <template id="form-messages">
+    {%- for key, msg in f.errors %}<span data-key="{{ key }}">{{ msg }}</span>{% endfor -%}
+    <span data-key="success">{{ f.success }}</span>
+  </template>
+</form>

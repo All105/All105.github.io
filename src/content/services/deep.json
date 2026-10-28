@@ -1,0 +1,40 @@
+{
+  "id": "deep",
+  "order": 6,
+  "show_in_carousel": true,
+  "slug_en": "deep-cleaning",
+  "slug_es": "limpieza-profunda",
+  "category_en": "Top to bottom",
+  "category_es": "A fondo",
+  "name_en": "Deep cleaning",
+  "name_es": "Limpieza profunda",
+  "title1_en": "Deep",
+  "title2_en": "cleaning",
+  "title1_es": "Limpieza",
+  "title2_es": "profunda",
+  "summary_en": "A thorough, detail-focused clean for spaces that need more than routine upkeep: buildup, grime and hard-to-reach spots.",
+  "summary_es": "Una limpieza minuciosa para espacios que necesitan más que el mantenimiento habitual: suciedad acumulada y rincones difíciles.",
+  "includes_en": [
+    "Baseboards, door frames and trim",
+    "Kitchen degreasing: backsplash, hood and cabinet fronts",
+    "Bathroom descaling: tile, grout and fixtures",
+    "Light fixtures, vents and ceiling fans within reach",
+    "Behind and under movable furniture"
+  ],
+  "includes_es": [
+    "Zócalos, marcos de puertas y molduras",
+    "Desengrase de cocina: salpicadero, campana y frentes de gabinetes",
+    "Desincrustado en baños: azulejos, juntas y grifería",
+    "Lámparas, rejillas y ventiladores de techo al alcance",
+    "Detrás y debajo de muebles que se puedan mover"
+  ],
+  "body_en": "A good choice before a special event, after a long time without service, or as a first visit before a recurring plan.\n\nTell us what areas need the most attention and we will send you a quote in US dollars.",
+  "body_es": "Una buena opción antes de un evento, después de mucho tiempo sin limpieza o como primera visita antes de un plan periódico.\n\nDinos qué zonas necesitan más atención y te enviamos una cotización en dólares.",
+  "seo_title_en": "Deep Cleaning Services in Clearwater, Tampa & Orlando | All Clean Group",
+  "seo_title_es": "Limpieza profunda en Clearwater, Tampa y Orlando | All Clean Group",
+  "seo_description_en": "Detailed deep cleaning for homes and businesses from Clearwater to Orlando, FL: baseboards, degreasing, grout and hard-to-reach areas. Get a quote.",
+  "seo_description_es": "Limpieza profunda y detallada de casas y negocios de Clearwater a Orlando, FL: zócalos, desengrase, juntas y zonas difíciles. Pide cotización.",
+  "image_alt_en": "Placeholder: photo of a spotless kitchen",
+  "image_alt_es": "Marcador: foto de una cocina impecable",
+  "image": "/assets/img/placeholders/deep.svg"
+}

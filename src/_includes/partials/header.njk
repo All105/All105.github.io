@@ -1,0 +1,31 @@
+{%- from "partials/icons.njk" import icon -%}
+{%- set navItems = [["home", t.nav.home], ["services", t.nav.services], ["areas", t.nav.areas], ["quote", t.nav.quote], ["contact", t.nav.contact]] -%}
+<header class="site-nav{% if not carousel %} site-nav--solid{% endif %}" id="site-nav">
+  <a class="brand" href="{{ routes.home[lang] }}">
+    <span class="svg-container">{{ icon("logo") }}</span>
+    <span class="brand-name">{{ site.business_name }}</span>
+  </a>
+  <a class="nav-call-mobile" href="tel:{{ site.phone }}" aria-label="{{ t.phoneLabel }}: {{ site.phone_display }}">{{ icon("phone", "icon icon-20") }}</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" data-label-open="{{ t.nav.menu }}" data-label-close="{{ t.nav.close }}">
+    {{ icon("menu") }}<span class="visually-hidden">{{ t.nav.menu }}</span>
+  </button>
+  <div class="nav-menu" id="nav-menu">
+    <nav aria-label="{{ t.nav.primary }}">
+      <ul class="nav-links">
+        {%- for item in navItems %}
+        {%- set key = item[0] %}
+        {%- set isActive = (pageKey == key) or (key == "services" and pageKey and pageKey.indexOf("service:") == 0) or (key == "areas" and pageKey and pageKey.indexOf("zone:") == 0) %}
+        <li><a href="{{ routes[key][lang] }}"{% if isActive %} class="active" aria-current="page"{% endif %}>{{ item[1] }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <div class="lang-switch" role="group" aria-label="{{ t.langSwitch }}">
+        <a href="{{ alt.en }}" hreflang="en" lang="en" data-set-lang="en"{% if lang == "en" %} aria-current="true" class="is-current"{% endif %}><span aria-hidden="true">EN</span><span class="visually-hidden">English</span></a>
+        <span aria-hidden="true" class="lang-sep">|</span>
+        <a href="{{ alt.es }}" hreflang="es" lang="es" data-set-lang="es"{% if lang == "es" %} aria-current="true" class="is-current"{% endif %}><span aria-hidden="true">ES</span><span class="visually-hidden">Español</span></a>
+      </div>
+      <a class="btn btn-call" href="tel:{{ site.phone }}" aria-label="{{ t.phoneLabel }}: {{ site.phone_display }}">{{ icon("phone") }}<span class="btn-call-text">{{ site.phone_display | nbphone }}</span></a>
+    </div>
+  </div>
+</header>

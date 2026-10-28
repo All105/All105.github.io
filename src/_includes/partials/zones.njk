@@ -1,0 +1,19 @@
+<section class="section section--soft" aria-labelledby="zones-title">
+  <div class="container">
+    <h2 id="zones-title" class="section-title">{{ home['zones_title_' + lang] }}</h2>
+    <p class="section-lead">{{ home['zones_text_' + lang] }}</p>
+    <ul class="zone-grid">
+      {%- for z in zones %}
+      <li class="zone-card">
+        <h3>{% if z.has_page %}<a href="{{ routes['zone:' + z.id][lang] }}">{{ z.name }}</a>{% else %}{{ z.name }}{% endif %}</h3>
+        <p class="zone-county">{{ z.county }}</p>
+        <p>{{ z['intro_' + lang] }}</p>
+        {%- if z.nearby and z.nearby.length %}
+        <p class="zone-nearby"><span class="visually-hidden">{{ t.areas.nearby }}: </span>{{ z.nearby | join(" · ") }}</p>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+    <p class="zone-corridor">{{ t.areas.corridor }}</p>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+---
+pagination: { data: langs, size: 1, alias: lang }
+layout: layouts/base.njk
+pageKey: contact
+permalink: "{{ routes.contact[lang] }}"
+eleventyComputed:
+  seoTitle: "{{ seo.contact[lang][0] }}"
+  seoDescription: "{{ seo.contact[lang][1] }}"
+---
+{%- from "partials/icons.njk" import icon -%}
+{%- set t = i18n[lang] -%}
+{%- set heroTitle = t.contact.title -%}
+{%- set heroLead = t.contact.intro -%}
+{%- set crumbs = [[t.nav.home, routes.home[lang]], [t.nav.contact, routes.contact[lang]]] -%}
+{% include "partials/page-hero.njk" %}
+<section class="section">
+  <div class="container container--narrow">
+    <dl class="contact-list">
+      <div><dt>{{ icon("phone") }} {{ t.contact.phone }}</dt><dd><a href="tel:{{ site.phone }}">{{ site.phone_display | nbphone }}</a></dd></div>
+      {%- if site.whatsapp %}
+      <div><dt>{{ icon("whatsapp") }} {{ t.contact.whatsapp }}</dt><dd><a href="https://wa.me/{{ site.whatsapp }}" rel="noopener" target="_blank">{{ site.whatsapp_display }}</a></dd></div>
+      {%- endif %}
+      <div><dt>{{ icon("mail") }} {{ t.contact.email }}</dt><dd><a href="mailto:{{ site.email }}">{{ site.email }}</a></dd></div>
+      <div><dt>{{ t.contact.hours }}</dt><dd>{{ site['hours_' + lang] }}</dd></div>
+      <div><dt>{{ t.contact.areas }}</dt><dd>{% for z in zones %}{{ z.name }}{% if not loop.last %}, {% endif %}{% endfor %}. {{ t.areas.corridor }}</dd></div>
+    </dl>
+    <p><a class="btn btn-primary btn-lg" href="{{ routes.quote[lang] }}">{{ t.carousel.quote }}</a></p>
+  </div>
+</section>

@@ -1,0 +1,14 @@
+---
+pagination: { data: langs, size: 1, alias: lang }
+layout: layouts/base.njk
+pageKey: unsubscribed
+permalink: "{{ routes.unsubscribed[lang] }}"
+eleventyComputed:
+  seoTitle: "{{ seo.unsubscribed[lang][0] }}"
+  seoDescription: "{{ seo.unsubscribed[lang][1] }}"
+---
+{%- set t = i18n[lang] -%}
+{%- set heroTitle = t.unsubscribed.title -%}
+{%- set heroLead = t.unsubscribed.text -%}
+{% include "partials/page-hero.njk" %}
+<section class="section"><div class="container"><p><a class="btn btn-primary" href="{{ routes.home[lang] }}">{{ t.nav.home }}</a> <a class="btn btn-ghost" href="tel:{{ site.phone }}">{{ site.phone_display | nbphone }}</a></p></div></section>

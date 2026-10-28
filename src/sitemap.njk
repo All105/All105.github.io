@@ -1,0 +1,15 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{%- for key, r in routes %}{% if not r.noindex %}{% for l in langs %}
+  <url>
+    <loc>{{ r[l] | absUrl }}</loc>
+    <xhtml:link rel="alternate" hreflang="en-US" href="{{ r.en | absUrl }}"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="{{ r.es | absUrl }}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ '/' | absUrl }}"/>
+  </url>
+{%- endfor %}{% endif %}{% endfor %}
+</urlset>

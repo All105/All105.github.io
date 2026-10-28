@@ -1,0 +1,18 @@
+<div class="page-hero">
+  <div class="container">
+    {%- if crumbs %}
+    <nav class="breadcrumb" aria-label="{{ t.breadcrumb }}">
+      <ol>
+        {%- for c in crumbs %}
+        <li>{% if loop.last %}<span aria-current="page">{{ c[0] }}</span>{% else %}<a href="{{ c[1] }}">{{ c[0] }}</a>{% endif %}</li>
+        {%- endfor %}
+      </ol>
+    </nav>
+    {%- endif %}
+    <h1>{{ heroTitle }}</h1>
+    {%- if heroLead %}<p class="lead">{{ heroLead }}</p>{% endif %}
+  </div>
+</div>
+{%- if crumbs %}
+<script type="application/ld+json">{{ crumbs | ldBreadcrumb | jsonld | safe }}</script>
+{%- endif %}

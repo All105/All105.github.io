@@ -1,0 +1,9 @@
+{%- if site.integrations.cf_analytics_token %}
+<div class="consent" id="consent" role="region" aria-label="{{ t.consent.label }}" hidden>
+  <p>{{ t.consent.text }} <a href="{{ routes.privacy[lang] }}#analytics">{{ t.footer.privacy }}</a></p>
+  <div class="consent-actions">
+    <button type="button" class="btn btn-ghost" data-consent="no">{{ t.consent.reject }}</button>
+    <button type="button" class="btn btn-primary" data-consent="yes">{{ t.consent.accept }}</button>
+  </div>
+</div>
+{%- endif %}

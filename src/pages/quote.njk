@@ -1,0 +1,20 @@
+---
+pagination: { data: langs, size: 1, alias: lang }
+layout: layouts/base.njk
+pageKey: quote
+loadTurnstileNow: true
+permalink: "{{ routes.quote[lang] }}"
+eleventyComputed:
+  seoTitle: "{{ seo.quote[lang][0] }}"
+  seoDescription: "{{ seo.quote[lang][1] }}"
+---
+{%- set t = i18n[lang] -%}
+{%- set heroTitle = home['quote_title_' + lang] -%}
+{%- set heroLead = home['quote_text_' + lang] -%}
+{%- set crumbs = [[t.nav.home, routes.home[lang]], [t.nav.quote, routes.quote[lang]]] -%}
+{% include "partials/page-hero.njk" %}
+<section class="section">
+  <div class="container container--narrow">
+    {% include "partials/quote-form.njk" %}
+  </div>
+</section>

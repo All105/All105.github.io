@@ -1,0 +1,12 @@
+<ul class="service-grid">
+  {%- for s in services %}
+  <li class="service-card">
+    <div class="service-card-media">{% image s.image, s['image_alt_' + lang], { cls: "service-card-img" } %}</div>
+    <div class="service-card-body">
+      <p class="tag">{{ s['category_' + lang] }}</p>
+      <h3><a href="{{ routes['service:' + s.id][lang] }}">{{ s['name_' + lang] }}</a></h3>
+      <p>{{ s['summary_' + lang] }}</p>
+    </div>
+  </li>
+  {%- endfor %}
+</ul>

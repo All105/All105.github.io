@@ -1,0 +1,26 @@
+---
+permalink: /404.html
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- if site.noindex %}
+  <meta name="robots" content="noindex, nofollow">
+  {%- endif %}
+  <title>Page not found · Página no encontrada | {{ site.business_name }}</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/main.css?v={{ buildId }}">
+</head>
+<body class="page-chooser">
+  <main id="main" class="chooser">
+    <h1>{{ i18n.en.notFound.title }}</h1>
+    <p>{{ i18n.en.notFound.text }} <a href="{{ routes.home.en }}">{{ i18n.en.notFound.back }}</a></p>
+    <h2 lang="es">{{ i18n.es.notFound.title }}</h2>
+    <p lang="es">{{ i18n.es.notFound.text }} <a href="{{ routes.home.es }}">{{ i18n.es.notFound.back }}</a></p>
+  </main>
+</body>
+</html>

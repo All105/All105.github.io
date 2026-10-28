@@ -1,0 +1,32 @@
+---
+pagination: { data: zonePages, size: 1, alias: p }
+layout: layouts/base.njk
+permalink: "{{ routes['zone:' + p.item.id][p.lang] }}"
+eleventyComputed:
+  lang: "{{ p.lang }}"
+  pageKey: "zone:{{ p.item.id }}"
+  seoTitle: "{{ p.item['seo_title_' + p.lang] }}"
+  seoDescription: "{{ p.item['seo_description_' + p.lang] }}"
+---
+{%- set z = p.item -%}
+{%- set t = i18n[lang] -%}
+{%- set heroTitle = (("Cleaning services in " if lang == "en" else "Servicios de limpieza en ") + z.name + ", FL") -%}
+{%- set heroLead = z['intro_' + lang] -%}
+{%- set crumbs = [[t.nav.home, routes.home[lang]], [t.nav.areas, routes.areas[lang]], [z.name, routes['zone:' + z.id][lang]]] -%}
+{% include "partials/page-hero.njk" %}
+<section class="section">
+  <div class="container container--narrow prose">
+    {{ z['body_' + lang] | md | safe }}
+    <p><strong>{{ t.areas.county }}:</strong> {{ z.county }}</p>
+    {%- if z.nearby and z.nearby.length %}
+    <p><strong>{{ t.areas.nearby }}:</strong> {{ z.nearby | join(", ") }}</p>
+    {%- endif %}
+    <h2>{{ t.areas.servicesHere }} {{ z.name }}</h2>
+    <ul class="link-list">
+      {%- for s in services %}
+      <li><a href="{{ routes['service:' + s.id][lang] }}">{{ s['name_' + lang] }}</a> — {{ s['summary_' + lang] }}</li>
+      {%- endfor %}
+    </ul>
+    <p><a class="btn btn-primary btn-lg" href="{{ routes.quote[lang] }}">{{ t.carousel.quote }}</a></p>
+  </div>
+</section>

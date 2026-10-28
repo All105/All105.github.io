@@ -1,0 +1,38 @@
+{
+  "business_name": "All Clean Group",
+  "url": "https://www.example.com",
+  "phone": "+18133781020",
+  "phone_display": "(813) 378-1020",
+  "whatsapp": "18133781020",
+  "email": "unitycorporateusa@gmail.com",
+  "hours_en": "Open every day, 24 hours",
+  "hours_es": "Abierto todos los días, 24 horas",
+  "open_24_7": true,
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "tiktok": "",
+    "google_business": ""
+  },
+  "credentials": {
+    "licensed": false,
+    "insured": false,
+    "bonded": false,
+    "license_number": ""
+  },
+  "legal": {
+    "legal_name": "",
+    "sunbiz_document_number": "",
+    "postal_address": "",
+    "privacy_email": "unitycorporateusa@gmail.com",
+    "retention_months": 24,
+    "effective_date": "",
+    "reviewed_by_lawyer": false
+  },
+  "integrations": {
+    "quote_endpoint": "/api/quote",
+    "turnstile_sitekey": "",
+    "cf_analytics_token": ""
+  },
+  "og_image": "/assets/img/og-default.jpg"
+}

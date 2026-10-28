@@ -1,0 +1,33 @@
+---
+permalink: /index.html
+---
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- if site.noindex %}
+  <meta name="robots" content="noindex, nofollow">
+  {%- endif %}
+  <title>{{ site.business_name }} | Cleaning Services · Servicios de limpieza — Florida</title>
+  <meta name="description" content="{{ home.seo_description_en }}">
+  <link rel="canonical" href="{{ '/' | absUrl }}">
+  <link rel="alternate" hreflang="en-US" href="{{ routes.home.en | absUrl }}">
+  <link rel="alternate" hreflang="es-US" href="{{ routes.home.es | absUrl }}">
+  <link rel="alternate" hreflang="x-default" href="{{ '/' | absUrl }}">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/main.css?v={{ buildId }}">
+  <script src="/assets/js/lang-redirect.js?v={{ buildId }}"></script>
+</head>
+<body class="page-chooser">
+  <main id="main" class="chooser">
+    <h1>{{ site.business_name }}</h1>
+    <p>Cleaning services from Clearwater to Orlando, Florida.<br><span lang="es">Servicios de limpieza de Clearwater a Orlando, Florida.</span></p>
+    <p class="chooser-links">
+      <a class="btn btn-primary btn-lg" href="{{ routes.home.en }}" hreflang="en" data-set-lang="en">English</a>
+      <a class="btn btn-primary btn-lg" href="{{ routes.home.es }}" hreflang="es" lang="es" data-set-lang="es">Español</a>
+    </p>
+    <p><a href="tel:{{ site.phone }}">{{ site.phone_display | nbphone }}</a></p>
+  </main>
+</body>
+</html>

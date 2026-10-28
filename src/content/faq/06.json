@@ -1,0 +1,7 @@
+{
+  "order": 6,
+  "q_en": "Will you send me text messages?",
+  "q_es": "¿Me van a enviar mensajes de texto?",
+  "a_en": "Only if you check the optional SMS box in the form. You can reply STOP at any time to stop receiving texts.",
+  "a_es": "Solo si marcas la casilla opcional de SMS en el formulario. Puedes responder STOP en cualquier momento para dejar de recibirlos."
+}

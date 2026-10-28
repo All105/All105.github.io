@@ -1,0 +1,35 @@
+---
+pagination: { data: servicePages, size: 1, alias: p }
+layout: layouts/base.njk
+permalink: "{{ routes['service:' + p.item.id][p.lang] }}"
+eleventyComputed:
+  lang: "{{ p.lang }}"
+  pageKey: "service:{{ p.item.id }}"
+  seoTitle: "{{ p.item['seo_title_' + p.lang] }}"
+  seoDescription: "{{ p.item['seo_description_' + p.lang] }}"
+---
+{%- set s = p.item -%}
+{%- set t = i18n[lang] -%}
+{%- set heroTitle = s['name_' + lang] -%}
+{%- set heroLead = s['summary_' + lang] -%}
+{%- set crumbs = [[t.nav.home, routes.home[lang]], [t.nav.services, routes.services[lang]], [heroTitle, routes['service:' + s.id][lang]]] -%}
+{% include "partials/page-hero.njk" %}
+<section class="section">
+  <div class="container detail-grid">
+    <div class="prose">
+      {{ s['body_' + lang] | md | safe }}
+      {%- if s['includes_' + lang] and s['includes_' + lang].length %}
+      <h2>{{ t.services.includes }}</h2>
+      <ul class="checklist">
+        {%- for i in s['includes_' + lang] %}<li>{{ i }}</li>{% endfor %}
+      </ul>
+      <p class="muted">{{ t.services.includesNote }}</p>
+      {%- endif %}
+      <h2>{{ t.areas.title }}</h2>
+      <p>{% for z in zones %}{% if z.has_page %}<a href="{{ routes['zone:' + z.id][lang] }}">{{ z.name }}</a>{% else %}{{ z.name }}{% endif %}{% if not loop.last %} · {% endif %}{% endfor %}. {{ t.areas.corridor }}</p>
+      <p><a class="btn btn-primary btn-lg" href="{{ routes.quote[lang] }}?service={{ s.id }}#quote-form">{{ t.services.cta }}</a></p>
+    </div>
+    <div class="detail-media">{% image s.image, s['image_alt_' + lang], { cls: "detail-img", sizes: "(min-width: 900px) 45vw, 100vw" } %}</div>
+  </div>
+</section>
+<script type="application/ld+json">{{ s | ldService(lang) | jsonld | safe }}</script>

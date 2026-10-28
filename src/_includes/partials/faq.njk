@@ -1,0 +1,13 @@
+<section class="section" aria-labelledby="faq-title">
+  <div class="container container--narrow">
+    <h2 id="faq-title" class="section-title">{{ home['faq_title_' + lang] }}</h2>
+    <div class="faq">
+      {%- for f in faqs %}
+      <details class="faq-item">
+        <summary>{{ f['q_' + lang] }}</summary>
+        <div class="faq-answer">{{ f['a_' + lang] | md | safe }}</div>
+      </details>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

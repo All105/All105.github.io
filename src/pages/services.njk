@@ -1,0 +1,20 @@
+---
+pagination: { data: langs, size: 1, alias: lang }
+layout: layouts/base.njk
+pageKey: services
+permalink: "{{ routes.services[lang] }}"
+eleventyComputed:
+  seoTitle: "{{ seo.services[lang][0] }}"
+  seoDescription: "{{ seo.services[lang][1] }}"
+---
+{%- set t = i18n[lang] -%}
+{%- set heroTitle = t.services.title -%}
+{%- set heroLead = t.services.intro -%}
+{%- set crumbs = [[t.nav.home, routes.home[lang]], [t.nav.services, routes.services[lang]]] -%}
+{% include "partials/page-hero.njk" %}
+<section class="section">
+  <div class="container">
+    {% include "partials/service-grid.njk" %}
+    <p class="center"><a class="btn btn-primary btn-lg" href="{{ routes.quote[lang] }}">{{ t.carousel.quote }}</a></p>
+  </div>
+</section>

@@ -1,0 +1,14 @@
+<section class="section" aria-labelledby="steps-title">
+  <div class="container">
+    <h2 id="steps-title" class="section-title">{{ home['steps_title_' + lang] }}</h2>
+    <ol class="steps">
+      {%- for step in home.steps %}
+      <li class="step">
+        <span class="step-num" aria-hidden="true">{{ loop.index | pad2 }}</span>
+        <h3>{{ step['title_' + lang] }}</h3>
+        <p>{{ step['text_' + lang] }}</p>
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>

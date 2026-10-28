@@ -1,0 +1,576 @@
+# Decap CMS configuration — panel at /admin.
+# Before deploying run: node scripts/set-domain.mjs www.yourdomain.com github-user/repo (see docs/DESPLIEGUE.md).
+# Every editable text has parallel _en and _es fields. Saving in the panel commits to GitHub,
+# which runs the tests and redeploys the site automatically (about 2 minutes).
+backend:
+  name: github
+  repo: YOUR-GITHUB-USER/all-clean-group
+  branch: main
+  base_url: "https://www.example.com"
+  auth_endpoint: cms-auth/auth
+locale: es
+# Only used when the panel is opened on localhost together with `npx decap-server`.
+local_backend: true
+site_url: "https://www.example.com"
+display_url: "https://www.example.com"
+media_folder: src/assets/uploads
+public_folder: /assets/uploads
+collections:
+- name: settings
+  label: Settings / Ajustes
+  editor:
+    preview: false
+  files:
+  - name: site
+    label: Business data / Datos del negocio
+    file: src/content/site.json
+    fields:
+    - name: business_name
+      label: Business name / Nombre comercial
+      widget: string
+    - name: url
+      label: "Website URL (https://…) / URL de la web"
+      widget: string
+      hint: Your domain, no trailing slash / Tu dominio, sin barra final
+    - name: phone
+      label: Phone, E.164 (+1…) / Teléfono E.164
+      widget: string
+      pattern:
+      - "^\\+1\\d{10}$"
+      - Format +18135551234
+    - name: phone_display
+      label: Phone as shown / Teléfono visible
+      widget: string
+    - name: whatsapp
+      label: WhatsApp number (digits, with 1) / Número de WhatsApp
+      widget: string
+      hint: e.g. 18135551234 — leave empty to hide / vacío para ocultar
+      required: false
+    - name: email
+      label: Email / Correo
+      widget: string
+    - name: hours_en
+      label: Hours / Horario (EN)
+      widget: string
+    - name: hours_es
+      label: Hours / Horario (ES)
+      widget: string
+    - name: open_24_7
+      label: Open 24/7 (for Google) / Abierto 24/7
+      widget: boolean
+    - name: social
+      label: Social networks / Redes sociales
+      widget: object
+      fields:
+      - name: facebook
+        label: Facebook URL
+        widget: string
+        required: false
+      - name: instagram
+        label: Instagram URL
+        widget: string
+        required: false
+      - name: tiktok
+        label: TikTok URL
+        widget: string
+        required: false
+      - name: google_business
+        label: Google Business Profile URL
+        widget: string
+        required: false
+    - name: credentials
+      label: Credentials (only check what is TRUE) / Credenciales (marca solo lo que sea VERDAD)
+      widget: object
+      fields:
+      - name: licensed
+        label: Licensed / Con licencia
+        widget: boolean
+        default: false
+      - name: insured
+        label: Insured / Asegurado
+        widget: boolean
+        default: false
+      - name: bonded
+        label: Bonded / Con fianza
+        widget: boolean
+        default: false
+      - name: license_number
+        label: License number / Número de licencia
+        widget: string
+        required: false
+    - name: legal
+      label: Legal data / Datos legales
+      widget: object
+      fields:
+      - name: legal_name
+        label: Legal business name (Sunbiz) / Razón social
+        widget: string
+        required: false
+      - name: sunbiz_document_number
+        label: Sunbiz document number
+        widget: string
+        required: false
+      - name: postal_address
+        label: Mailing address (PO Box OK, not your home if you prefer) / Dirección postal (vale apartado postal)
+        widget: string
+        hint: Needed for CAN-SPAM / Necesaria para CAN-SPAM
+        required: false
+      - name: privacy_email
+        label: Privacy contact email / Correo de privacidad
+        widget: string
+      - name: retention_months
+        label: Keep quote requests (months) / Conservar solicitudes (meses)
+        widget: number
+        value_type: int
+        min: 1
+        max: 120
+      - name: effective_date
+        label: Effective date of legal texts / Fecha de vigencia
+        widget: string
+        required: false
+      - name: reviewed_by_lawyer
+        label: Reviewed by a Florida attorney / Revisado por abogado de Florida
+        widget: boolean
+        default: false
+    - name: integrations
+      label: Integrations / Integraciones
+      widget: object
+      fields:
+      - name: quote_endpoint
+        label: Form endpoint / Endpoint del formulario
+        widget: string
+        hint: /api/quote
+      - name: turnstile_sitekey
+        label: Turnstile site key (public)
+        widget: string
+        required: false
+      - name: cf_analytics_token
+        label: Cloudflare Web Analytics token (public)
+        widget: string
+        hint: Empty = no analytics / Vacío = sin analítica
+        required: false
+    - name: og_image
+      label: Social share image / Imagen para redes
+      widget: image
+      hint: 1200×630 JPG
+  - name: home
+    label: Home page texts / Textos de portada
+    file: src/content/home.json
+    fields:
+    - name: carousel_label_en
+      label: Carousel label (screen readers) / Etiqueta del carrusel (EN)
+      widget: string
+    - name: carousel_label_es
+      label: Carousel label (screen readers) / Etiqueta del carrusel (ES)
+      widget: string
+    - name: intro_title_en
+      label: Main heading (H1) / Título principal (H1) (EN)
+      widget: string
+    - name: intro_title_es
+      label: Main heading (H1) / Título principal (H1) (ES)
+      widget: string
+    - name: intro_text_en
+      label: Services intro / Introducción de servicios (EN)
+      widget: text
+    - name: intro_text_es
+      label: Services intro / Introducción de servicios (ES)
+      widget: text
+    - name: steps_title_en
+      label: '''How we work'' title / Título ''Cómo trabajamos'' (EN)'
+      widget: string
+    - name: steps_title_es
+      label: '''How we work'' title / Título ''Cómo trabajamos'' (ES)'
+      widget: string
+    - name: steps
+      label: Steps / Pasos
+      widget: list
+      fields:
+      - name: title_en
+        label: Title / Título (EN)
+        widget: string
+      - name: title_es
+        label: Title / Título (ES)
+        widget: string
+      - name: text_en
+        label: Text / Texto (EN)
+        widget: text
+      - name: text_es
+        label: Text / Texto (ES)
+        widget: text
+      min: 3
+      max: 4
+    - name: zones_title_en
+      label: Zones title / Título de zonas (EN)
+      widget: string
+    - name: zones_title_es
+      label: Zones title / Título de zonas (ES)
+      widget: string
+    - name: zones_text_en
+      label: Zones text / Texto de zonas (EN)
+      widget: text
+    - name: zones_text_es
+      label: Zones text / Texto de zonas (ES)
+      widget: text
+    - name: faq_title_en
+      label: FAQ title / Título de preguntas (EN)
+      widget: string
+    - name: faq_title_es
+      label: FAQ title / Título de preguntas (ES)
+      widget: string
+    - name: quote_title_en
+      label: Quote title / Título de cotización (EN)
+      widget: string
+    - name: quote_title_es
+      label: Quote title / Título de cotización (ES)
+      widget: string
+    - name: quote_text_en
+      label: Quote text / Texto de cotización (EN)
+      widget: text
+    - name: quote_text_es
+      label: Quote text / Texto de cotización (ES)
+      widget: text
+    - name: seo_title_en
+      label: Home SEO title / Título SEO portada (EN)
+      widget: string
+    - name: seo_title_es
+      label: Home SEO title / Título SEO portada (ES)
+      widget: string
+    - name: seo_description_en
+      label: Home SEO description / Descripción SEO portada (EN)
+      widget: text
+    - name: seo_description_es
+      label: Home SEO description / Descripción SEO portada (ES)
+      widget: text
+- name: services
+  label: Services / Servicios
+  folder: src/content/services
+  extension: json
+  format: json
+  create: true
+  slug: "{{fields.id}}"
+  identifier_field: name_en
+  summary: "{{order}}. {{name_es}} / {{name_en}}"
+  sortable_fields:
+  - order
+  - name_es
+  editor:
+    preview: false
+  fields:
+  - name: id
+    label: ID (do not change after publishing / no cambiar tras publicar)
+    widget: string
+    hint: lowercase-with-dashes, used by the quote form / minúsculas-con-guiones
+  - name: order
+    label: Order / Orden
+    widget: number
+    value_type: int
+    min: 1
+  - name: show_in_carousel
+    label: Show in carousel / Mostrar en el carrusel
+    widget: boolean
+    default: true
+  - name: slug_en
+    label: URL slug (EN)
+    widget: string
+    hint: e.g. residential-cleaning
+  - name: slug_es
+    label: URL slug (ES)
+    widget: string
+    hint: p. ej. limpieza-residencial
+  - name: name_en
+    label: Full name / Nombre completo (EN)
+    widget: string
+  - name: name_es
+    label: Full name / Nombre completo (ES)
+    widget: string
+  - name: category_en
+    label: Category tag / Etiqueta (EN)
+    widget: string
+  - name: category_es
+    label: Category tag / Etiqueta (ES)
+    widget: string
+  - name: title1_en
+    label: Carousel title, line 1 / Título carrusel, línea 1 (EN)
+    widget: string
+    hint: Max ~12 characters / Máx. ~12 caracteres
+  - name: title1_es
+    label: Carousel title, line 1 / Título carrusel, línea 1 (ES)
+    widget: string
+    hint: Max ~12 characters / Máx. ~12 caracteres
+  - name: title2_en
+    label: Carousel title, line 2 / Título carrusel, línea 2 (EN)
+    widget: string
+    hint: Max ~12 characters / Máx. ~12 caracteres
+  - name: title2_es
+    label: Carousel title, line 2 / Título carrusel, línea 2 (ES)
+    widget: string
+    hint: Max ~12 characters / Máx. ~12 caracteres
+  - name: summary_en
+    label: Short description / Descripción corta (EN)
+    widget: text
+  - name: summary_es
+    label: Short description / Descripción corta (ES)
+    widget: text
+  - name: body_en
+    label: Service page text / Texto de la página (EN)
+    widget: markdown
+    buttons:
+    - bold
+    - italic
+    - link
+    - bulleted-list
+    editor_components: []
+  - name: body_es
+    label: Service page text / Texto de la página (ES)
+    widget: markdown
+    buttons:
+    - bold
+    - italic
+    - link
+    - bulleted-list
+    editor_components: []
+  - name: includes_en
+    label: What it includes (EN)
+    widget: list
+    required: false
+  - name: includes_es
+    label: Qué incluye (ES)
+    widget: list
+    required: false
+  - name: image
+    label: Photo / Foto
+    widget: image
+    hint: "Your own photo or a licensed one. 16:10 (e.g. 1920×1200), JPG or WebP, under 400 KB. / Foto propia o con licencia. 16:10 (p. ej. 1920×1200), JPG o WebP, menos de 400 KB."
+  - name: image_alt_en
+    label: Photo description (alt) / Descripción de la foto (alt) (EN)
+    widget: string
+    hint: Describe what the photo shows / Describe lo que muestra la foto
+  - name: image_alt_es
+    label: Photo description (alt) / Descripción de la foto (alt) (ES)
+    widget: string
+    hint: Describe what the photo shows / Describe lo que muestra la foto
+  - name: seo_title_en
+    label: SEO title / Título SEO (EN)
+    widget: string
+    hint: Unique, ~60 characters / Único, ~60 caracteres
+  - name: seo_title_es
+    label: SEO title / Título SEO (ES)
+    widget: string
+    hint: Unique, ~60 characters / Único, ~60 caracteres
+  - name: seo_description_en
+    label: SEO description / Descripción SEO (EN)
+    widget: text
+    hint: Unique, ~155 characters / Única, ~155 caracteres
+  - name: seo_description_es
+    label: SEO description / Descripción SEO (ES)
+    widget: text
+    hint: Unique, ~155 characters / Única, ~155 caracteres
+- name: zones
+  label: Zones / Zonas
+  folder: src/content/zones
+  extension: json
+  format: json
+  create: true
+  slug: "{{fields.id}}"
+  identifier_field: name
+  summary: "{{order}}. {{name}}"
+  editor:
+    preview: false
+  fields:
+  - name: id
+    label: ID
+    widget: string
+  - name: order
+    label: Order / Orden
+    widget: number
+    value_type: int
+    min: 1
+  - name: has_page
+    label: Has its own page / Tiene página propia
+    widget: boolean
+    default: true
+  - name: name
+    label: City / Ciudad
+    widget: string
+  - name: county
+    label: County / Condado
+    widget: string
+  - name: slug
+    label: URL slug
+    widget: string
+  - name: nearby
+    label: Nearby communities / Comunidades cercanas
+    widget: list
+    required: false
+  - name: intro_en
+    label: Intro / Introducción (EN)
+    widget: text
+  - name: intro_es
+    label: Intro / Introducción (ES)
+    widget: text
+  - name: body_en
+    label: Page text / Texto de la página (EN)
+    widget: markdown
+    buttons:
+    - bold
+    - italic
+    - link
+    - bulleted-list
+    editor_components: []
+  - name: body_es
+    label: Page text / Texto de la página (ES)
+    widget: markdown
+    buttons:
+    - bold
+    - italic
+    - link
+    - bulleted-list
+    editor_components: []
+  - name: seo_title_en
+    label: SEO title / Título SEO (EN)
+    widget: string
+  - name: seo_title_es
+    label: SEO title / Título SEO (ES)
+    widget: string
+  - name: seo_description_en
+    label: SEO description / Descripción SEO (EN)
+    widget: text
+  - name: seo_description_es
+    label: SEO description / Descripción SEO (ES)
+    widget: text
+- name: faq
+  label: FAQ / Preguntas frecuentes
+  folder: src/content/faq
+  extension: json
+  format: json
+  create: true
+  slug: "{{fields.order}}"
+  identifier_field: q_es
+  summary: "{{order}}. {{q_es}}"
+  editor:
+    preview: false
+  fields:
+  - name: order
+    label: Order / Orden
+    widget: number
+    value_type: int
+    min: 1
+  - name: q_en
+    label: Question / Pregunta (EN)
+    widget: string
+  - name: q_es
+    label: Question / Pregunta (ES)
+    widget: string
+  - name: a_en
+    label: Answer / Respuesta (EN)
+    widget: text
+  - name: a_es
+    label: Answer / Respuesta (ES)
+    widget: text
+- name: legal
+  label: Legal pages / Páginas legales
+  editor:
+    preview: false
+  files:
+  - name: privacy_en
+    label: Privacy Policy (EN)
+    file: src/legal/privacy-en.md
+    fields:
+    - name: title
+      label: Title / Título
+      widget: string
+    - name: lang
+      label: lang
+      widget: hidden
+    - name: pageKey
+      label: pageKey
+      widget: hidden
+    - name: body
+      label: Text / Texto
+      widget: markdown
+      hint: "Text in {{ … }} or {% … %} is filled in automatically — do not remove it. / El texto entre {{ … }} o {% … %} se rellena solo — no lo borres."
+  - name: privacy_es
+    label: Política de privacidad (ES)
+    file: src/legal/privacy-es.md
+    fields:
+    - name: title
+      label: Title / Título
+      widget: string
+    - name: lang
+      label: lang
+      widget: hidden
+    - name: pageKey
+      label: pageKey
+      widget: hidden
+    - name: body
+      label: Text / Texto
+      widget: markdown
+      hint: "Text in {{ … }} or {% … %} is filled in automatically — do not remove it. / El texto entre {{ … }} o {% … %} se rellena solo — no lo borres."
+  - name: terms_en
+    label: Terms of Service (EN)
+    file: src/legal/terms-en.md
+    fields:
+    - name: title
+      label: Title / Título
+      widget: string
+    - name: lang
+      label: lang
+      widget: hidden
+    - name: pageKey
+      label: pageKey
+      widget: hidden
+    - name: body
+      label: Text / Texto
+      widget: markdown
+      hint: "Text in {{ … }} or {% … %} is filled in automatically — do not remove it. / El texto entre {{ … }} o {% … %} se rellena solo — no lo borres."
+  - name: terms_es
+    label: Términos del servicio (ES)
+    file: src/legal/terms-es.md
+    fields:
+    - name: title
+      label: Title / Título
+      widget: string
+    - name: lang
+      label: lang
+      widget: hidden
+    - name: pageKey
+      label: pageKey
+      widget: hidden
+    - name: body
+      label: Text / Texto
+      widget: markdown
+      hint: "Text in {{ … }} or {% … %} is filled in automatically — do not remove it. / El texto entre {{ … }} o {% … %} se rellena solo — no lo borres."
+  - name: accessibility_en
+    label: Accessibility (EN)
+    file: src/legal/accessibility-en.md
+    fields:
+    - name: title
+      label: Title / Título
+      widget: string
+    - name: lang
+      label: lang
+      widget: hidden
+    - name: pageKey
+      label: pageKey
+      widget: hidden
+    - name: body
+      label: Text / Texto
+      widget: markdown
+      hint: "Text in {{ … }} or {% … %} is filled in automatically — do not remove it. / El texto entre {{ … }} o {% … %} se rellena solo — no lo borres."
+  - name: accessibility_es
+    label: Accesibilidad (ES)
+    file: src/legal/accessibility-es.md
+    fields:
+    - name: title
+      label: Title / Título
+      widget: string
+    - name: lang
+      label: lang
+      widget: hidden
+    - name: pageKey
+      label: pageKey
+      widget: hidden
+    - name: body
+      label: Text / Texto
+      widget: markdown
+      hint: "Text in {{ … }} or {% … %} is filled in automatically — do not remove it. / El texto entre {{ … }} o {% … %} se rellena solo — no lo borres."
