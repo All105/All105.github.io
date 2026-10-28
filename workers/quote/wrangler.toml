@@ -8,17 +8,17 @@ compatibility_date = "2026-10-01"
 workers_dev = false
 
 # Same origin as the website, so the page can POST to /api/quote without CORS.
-# Replace example.com with your domain (see docs/DESPLIEGUE.md).
+# Domain set with scripts/set-domain.mjs (see docs/DESPLIEGUE.md).
 routes = [
-  { pattern = "www.example.com/api/*", zone_name = "example.com" }
+  { pattern = "www.allcleanfloridagroup.com/api/*", zone_name = "allcleanfloridagroup.com" }
 ]
 
 [vars]
-ALLOWED_ORIGINS = "https://www.example.com"
-TURNSTILE_HOSTNAMES = "www.example.com"
-SITE_URL = "https://www.example.com"
+ALLOWED_ORIGINS = "https://www.allcleanfloridagroup.com"
+TURNSTILE_HOSTNAMES = "www.allcleanfloridagroup.com"
+SITE_URL = "https://www.allcleanfloridagroup.com"
 TO_EMAIL = "unitycorporateusa@gmail.com"
-FROM_EMAIL = "no-reply@example.com"   # must be a sender/domain authenticated in Brevo
+FROM_EMAIL = "no-reply@allcleanfloridagroup.com"   # must be a sender/domain authenticated in Brevo
 FROM_NAME = "All Clean Group"
 BUSINESS_NAME = "All Clean Group"
 POSTAL_ADDRESS = ""                   # required before enabling confirmation emails (CAN-SPAM)

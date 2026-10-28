@@ -6,8 +6,8 @@ main = "src/index.js"
 compatibility_date = "2026-10-01"
 workers_dev = false
 routes = [
-  { pattern = "www.example.com/cms-auth/*", zone_name = "example.com" }
+  { pattern = "www.allcleanfloridagroup.com/cms-auth/*", zone_name = "allcleanfloridagroup.com" }
 ]
 
 [vars]
-SITE_ORIGIN = "https://www.example.com"
+SITE_ORIGIN = "https://www.allcleanfloridagroup.com"

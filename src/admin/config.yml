@@ -4,15 +4,15 @@
 # which runs the tests and redeploys the site automatically (about 2 minutes).
 backend:
   name: github
-  repo: YOUR-GITHUB-USER/all-clean-group
+  repo: All105/All105.github.io
   branch: main
-  base_url: "https://www.example.com"
+  base_url: "https://www.allcleanfloridagroup.com"
   auth_endpoint: cms-auth/auth
 locale: es
 # Only used when the panel is opened on localhost together with `npx decap-server`.
 local_backend: true
-site_url: "https://www.example.com"
-display_url: "https://www.example.com"
+site_url: "https://www.allcleanfloridagroup.com"
+display_url: "https://www.allcleanfloridagroup.com"
 media_folder: src/assets/uploads
 public_folder: /assets/uploads
 collections:
