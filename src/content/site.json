@@ -31,7 +31,7 @@
   },
   "integrations": {
     "quote_endpoint": "/api/quote",
-    "turnstile_sitekey": "",
+    "turnstile_sitekey": "0x4AAAAAAFqRdULTtG2rZzKO",
     "cf_analytics_token": ""
   },
   "og_image": "/assets/img/og-default.jpg"

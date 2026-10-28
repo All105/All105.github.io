@@ -7,7 +7,8 @@ import fs from "node:fs";
 const PATTERNS = [
   ["Brevo API key", /xkeysib-[a-f0-9]{64}-[A-Za-z0-9]{16}/],
   ["Brevo SMTP key", /xsmtpsib-[a-f0-9]{64}-[A-Za-z0-9]{16}/],
-  ["Turnstile secret key", /0x4AAAAAAA[A-Za-z0-9_-]{20,}/],
+  // Secret keys are longer than the public site key (which is fine to commit).
+  ["Turnstile secret key", /0x4AAAAA[A-Za-z0-9_-]{25,}/],
   ["GitHub token", /\b(gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{50,})\b/],
   ["Cloudflare API token assignment", /(CLOUDFLARE_API_TOKEN|CF_API_TOKEN)\s*[=:]\s*["']?[A-Za-z0-9_-]{40}/],
   ["Private key", /-----BEGIN (RSA |EC |OPENSSH |)PRIVATE KEY-----/],

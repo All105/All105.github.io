@@ -22,6 +22,14 @@ after(async () => {
 
 async function open(path, opts = {}) {
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, ...opts });
+  // Stand-in for Cloudflare Turnstile: same URL (so the CSP is exercised), instant token.
+  await context.route("https://challenges.cloudflare.com/**", (r) =>
+    r.fulfill({
+      status: 200,
+      contentType: "text/javascript",
+      body: "window.turnstile={render:function(el,o){setTimeout(function(){o.callback('test-token')},50);return 'w1'},reset:function(){}};",
+    })
+  );
   const page = await context.newPage();
   const problems = [];
   const external = [];
@@ -48,7 +56,10 @@ test("no CSP violations, JS errors or third-party requests on any page", async (
     const { context, page, problems, external } = await open(path);
     await page.waitForTimeout(300);
     assert.deepEqual(problems, [], `${path}: ${problems.join(" | ")}`);
-    assert.deepEqual(external, [], `${path}: external requests ${external.join(", ")}`);
+    // The only third party allowed is Turnstile, and only where there is a quote form.
+    const hasForm = await page.$("#quote-form");
+    const others = external.filter((u) => !(hasForm && u.startsWith("https://challenges.cloudflare.com/turnstile/")));
+    assert.deepEqual(others, [], `${path}: external requests ${others.join(", ")}`);
     await context.close();
   }
 });
@@ -198,6 +209,7 @@ test("quote form: preselected service, localized errors, valid submission", asyn
   assert.match(sent.sms_text, /Responde STOP/);
   assert.equal(sent.website, "");
   assert.equal(sent.lang, "es");
+  assert.equal(sent.turnstile, "test-token", "Turnstile token is sent to the Worker");
   await context.close();
 });
 
