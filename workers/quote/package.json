@@ -1,0 +1,10 @@
+{
+  "name": "all-clean-group-quote-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "dev": "npx wrangler@4.154.0 dev",
+    "deploy": "npx wrangler@4.154.0 deploy"
+  }
+}

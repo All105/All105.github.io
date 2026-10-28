@@ -1,0 +1,24 @@
+{
+  "_comment": "Single source of truth for the response headers. Apply them in Cloudflare (Rules > Transform Rules > Modify Response Header) as described in docs/DESPLIEGUE.md. scripts/serve.mjs uses this same file locally. HSTS is set in Cloudflare SSL/TLS > Edge Certificates, but it is listed here so local tests match production.",
+  "site": {
+    "Content-Security-Policy": "default-src 'none'; script-src 'self' https://challenges.cloudflare.com https://static.cloudflareinsights.com; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; frame-src https://challenges.cloudflare.com; manifest-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests",
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+    "X-Frame-Options": "DENY",
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), usb=(), xr-spatial-tracking=()",
+    "Cross-Origin-Opener-Policy": "same-origin",
+    "Cross-Origin-Resource-Policy": "same-site",
+    "X-Permitted-Cross-Domain-Policies": "none"
+  },
+  "admin": {
+    "_comment": "Decap CMS needs inline styles and eval, GitHub API access and an OAuth popup. Applies only to /admin/*.",
+    "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://avatars.githubusercontent.com https://raw.githubusercontent.com https://*.githubusercontent.com; media-src 'self' blob:; connect-src 'self' https://api.github.com https://raw.githubusercontent.com https://*.githubusercontent.com; frame-src 'self' blob:; worker-src 'self' blob:; font-src 'self' data:; form-action 'self'; base-uri 'self'; frame-ancestors 'self'; object-src 'none'",
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "same-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+    "X-Robots-Tag": "noindex, nofollow"
+  }
+}

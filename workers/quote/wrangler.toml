@@ -1,0 +1,39 @@
+# Cloudflare Worker that receives the quote form. No secrets here:
+#   npx wrangler@4.154.0 secret put BREVO_API_KEY
+#   npx wrangler@4.154.0 secret put TURNSTILE_SECRET
+#   npx wrangler@4.154.0 secret put UNSUB_SECRET      (any long random string)
+name = "all-clean-group-quote"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+workers_dev = false
+
+# Same origin as the website, so the page can POST to /api/quote without CORS.
+# Replace example.com with your domain (see docs/DESPLIEGUE.md).
+routes = [
+  { pattern = "www.example.com/api/*", zone_name = "example.com" }
+]
+
+[vars]
+ALLOWED_ORIGINS = "https://www.example.com"
+TURNSTILE_HOSTNAMES = "www.example.com"
+SITE_URL = "https://www.example.com"
+TO_EMAIL = "unitycorporateusa@gmail.com"
+FROM_EMAIL = "no-reply@example.com"   # must be a sender/domain authenticated in Brevo
+FROM_NAME = "All Clean Group"
+BUSINESS_NAME = "All Clean Group"
+POSTAL_ADDRESS = ""                   # required before enabling confirmation emails (CAN-SPAM)
+SEND_CONFIRMATION = "false"           # "true" sends an acknowledgement to the customer
+
+# Basic abuse limit per IP: 5 requests per minute.
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1001"
+  [ratelimits.simple]
+  limit = 5
+  period = 60
+
+# Suppression list for unsubscribes (stores SHA-256 hashes, never plain addresses).
+# Create it with:  npx wrangler@4.154.0 kv namespace create SUPPRESSION   and paste the id.
+# [[kv_namespaces]]
+# binding = "SUPPRESSION"
+# id = "PASTE_KV_NAMESPACE_ID"
