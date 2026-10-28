@@ -15,6 +15,7 @@ if (fs.existsSync(stamp) && fs.readFileSync(stamp, "utf8") === INTEGRITY) {
   console.log(`decap-cms ${VERSION} already present`);
   process.exit(0);
 }
+fs.mkdirSync(path.resolve(".cache"), { recursive: true }); // absent on a fresh checkout
 const tmp = fs.mkdtempSync(path.resolve(".cache/decap-tmp-"));
 try {
   const file = execFileSync("npm", ["pack", `decap-cms@${VERSION}`, "--silent", "--pack-destination", tmp], { encoding: "utf8" }).trim().split("\n").pop();
