@@ -7,7 +7,7 @@
     "build": "eleventy",
     "start": "node scripts/fetch-decap.mjs && eleventy --serve",
     "serve": "node scripts/serve.mjs",
-    "test": "npm run build && html-validate \"_site/**/*.html\" && node --test tests/build.test.mjs tests/secrets.test.mjs && npm --prefix workers/quote test && npm --prefix workers/cms-auth test",
+    "test": "npm run build && html-validate --config htmlvalidate.json \"_site/**/*.html\" && node --test tests/build.test.mjs tests/secrets.test.mjs && npm --prefix workers/quote test && npm --prefix workers/cms-auth test",
     "test:e2e": "node tests/e2e.mjs",
     "test:lighthouse": "node tests/lighthouse.mjs",
     "placeholders": "node scripts/make-placeholders.mjs"

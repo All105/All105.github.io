@@ -207,6 +207,9 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/admin/index.html": "admin/index.html" });
   eleventyConfig.addPassthroughCopy({ ".cache/decap": "admin/vendor" });
 
+  // CMS data and the admin page are read or copied as-is, never rendered as templates.
+  eleventyConfig.ignores.add("src/content/**");
+  eleventyConfig.ignores.add("src/admin/**");
   eleventyConfig.addWatchTarget(CONTENT);
 
   // Minify our own CSS and JS after the build (GSAP and Decap already ship minified).
