@@ -18,7 +18,11 @@ const PATTERNS = [
 test("no secrets in tracked files", () => {
   let files;
   try {
-    files = execFileSync("git", ["ls-files", "-co", "--exclude-standard"], { encoding: "utf8" }).split("\n").filter(Boolean);
+    files = execFileSync("git", ["ls-files", "-co", "--exclude-standard"], { encoding: "utf8" })
+      .split("\n")
+      .filter(Boolean)
+      // Installed packages and build output are not ours, even if .gitignore is missing.
+      .filter((f) => !/^(node_modules|_site|\.cache|\.wrangler)\//.test(f) && !f.includes("/node_modules/"));
   } catch {
     return; // not a git checkout
   }
