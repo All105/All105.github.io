@@ -1,0 +1,38 @@
+# Deploys the Cloudflare Workers when their code changes. Needs repository secrets
+# CLOUDFLARE_API_TOKEN (scope: Workers Scripts Edit + Workers Routes Edit for the zone) and CLOUDFLARE_ACCOUNT_ID.
+# Worker secrets (Brevo, Turnstile, GitHub OAuth) are set once with `wrangler secret put`, never here.
+name: Deploy Workers
+
+on:
+  push:
+    branches: [main]
+    paths: ["workers/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ vars.DEPLOY_WORKERS == 'true' }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: npm --prefix workers/quote test && npm --prefix workers/cms-auth test
+      - name: Deploy quote Worker
+        working-directory: workers/quote
+        run: npx -y wrangler@4.154.0 deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      - name: Deploy CMS auth Worker
+        working-directory: workers/cms-auth
+        run: npx -y wrangler@4.154.0 deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
