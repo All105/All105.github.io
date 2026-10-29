@@ -1,6 +1,6 @@
-# GitHub OAuth for Decap CMS (/admin). Secrets:
-#   npx wrangler@4.154.0 secret put GITHUB_CLIENT_ID
-#   npx wrangler@4.154.0 secret put GITHUB_CLIENT_SECRET
+# GitHub OAuth for Decap CMS (/admin). The client ID is public; the only secret is:
+#   GITHUB_CLIENT_SECRET  (Cloudflare dashboard › Workers › this Worker › Settings › Variables and Secrets,
+#                          or: npx wrangler@4.154.0 secret put GITHUB_CLIENT_SECRET)
 name = "all-clean-group-cms-auth"
 main = "src/index.js"
 compatibility_date = "2026-10-01"
@@ -11,3 +11,4 @@ routes = [
 
 [vars]
 SITE_ORIGIN = "https://www.allcleanfloridagroup.com"
+GITHUB_CLIENT_ID = "Ov23liPuVXMnItV9etL4"   # OAuth App "All Clean Group Admin" (public value)
