@@ -368,6 +368,8 @@ main:focus { outline: none; }
 .contact-list > div { padding: 18px 20px; border: 1px solid var(--c-line); border-radius: var(--radius); }
 .contact-list dt { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--c-teal-dark); }
 .contact-list dd { margin: 6px 0 0; font-size: 1.1rem; }
+/* Long addresses (e.g. the email) wrap instead of pushing the page sideways on small phones. */
+.contact-list dd, .site-footer a, .prose a { overflow-wrap: anywhere; }
 .review-banner { padding: 12px 16px; border-radius: 10px; background: #fff7dc; border: 1px solid var(--c-accent-dark); font-weight: 700; }
 mark.todo { background: #fff0b3; color: var(--c-ink); padding: 0 4px; border-radius: 4px; font-weight: 600; }
 
