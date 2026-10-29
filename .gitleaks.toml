@@ -1,0 +1,12 @@
+# gitleaks: default rules, plus an allowlist for files that only hold PUBLIC values
+# (Worker variables, CMS site data: Turnstile site key, GitHub OAuth client ID, emails).
+# Real secrets never go in these files; tests/secrets.test.mjs still scans them.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Public configuration files"
+paths = [
+  '''workers/[^/]+/wrangler\.toml''',
+  '''src/content/site\.json''',
+]
