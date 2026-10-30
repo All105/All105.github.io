@@ -1,25 +1,17 @@
 {
   "business_name": "All Clean Group",
-  "url": "https://www.allcleanfloridagroup.com",
-  "phone": "+18133781020",
-  "phone_display": "(813) 378-1020",
-  "whatsapp": "18133781020",
-  "email": "comercial@allcleanfloridagroup.com",
-  "hours_en": "Open every day, 24 hours",
-  "hours_es": "Abierto todos los días, 24 horas",
-  "open_24_7": true,
   "social": {
     "facebook": "",
     "instagram": "",
     "tiktok": "",
     "google_business": ""
   },
-  "credentials": {
-    "licensed": false,
-    "insured": false,
-    "bonded": false,
-    "license_number": ""
-  },
+  "phone": "+18133781020",
+  "url": "https://www.allcleanfloridagroup.com",
+  "open_24_7": true,
+  "phone_display": "(813) 378-1020",
+  "whatsapp": "18133781020",
+  "og_image": "/assets/uploads/whatsapp-image-2026-10-30-at-01.53.08.jpeg",
   "legal": {
     "legal_name": "",
     "sunbiz_document_number": "",
@@ -29,10 +21,18 @@
     "effective_date": "",
     "reviewed_by_lawyer": false
   },
+  "hours_en": "Open every day, 24 hours",
+  "credentials": {
+    "licensed": false,
+    "insured": false,
+    "bonded": false,
+    "license_number": ""
+  },
+  "email": "comercial@allcleanfloridagroup.com",
+  "hours_es": "Abierto todos los días, 24 horas",
   "integrations": {
     "quote_endpoint": "/api/quote",
     "turnstile_sitekey": "0x4AAAAAAFqRdULTtG2rZzKO",
     "cf_analytics_token": ""
-  },
-  "og_image": "/assets/img/og-default.jpg"
+  }
 }
