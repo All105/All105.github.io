@@ -13,7 +13,7 @@
   },
   "admin": {
     "_comment": "Decap CMS needs inline styles and eval, GitHub API access and an OAuth popup. Applies only to /admin/*.",
-    "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://avatars.githubusercontent.com https://raw.githubusercontent.com https://*.githubusercontent.com; media-src 'self' blob:; connect-src 'self' https://api.github.com https://raw.githubusercontent.com https://*.githubusercontent.com; frame-src 'self' blob:; worker-src 'self' blob:; font-src 'self' data:; form-action 'self'; base-uri 'self'; frame-ancestors 'self'; object-src 'none'",
+    "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://avatars.githubusercontent.com https://raw.githubusercontent.com https://*.githubusercontent.com; media-src 'self' blob:; connect-src 'self' blob: https://api.github.com https://raw.githubusercontent.com https://*.githubusercontent.com; frame-src 'self' blob:; worker-src 'self' blob:; font-src 'self' data:; form-action 'self'; base-uri 'self'; frame-ancestors 'self'; object-src 'none'",
     "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
     "X-Frame-Options": "SAMEORIGIN",
     "X-Content-Type-Options": "nosniff",
