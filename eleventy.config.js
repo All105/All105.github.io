@@ -193,7 +193,7 @@ export default function (eleventyConfig) {
       sizes,
       class: cls,
       loading: eager || visible ? "eager" : "lazy",
-      fetchpriority: eager ? "high" : undefined,
+            ...(eager && { fetchpriority: "high" }),
       decoding: "async",
     });
   });
