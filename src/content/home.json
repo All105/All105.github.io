@@ -1,12 +1,6 @@
 {
-  "carousel_label_en": "Our cleaning services",
-  "carousel_label_es": "Nuestros servicios de limpieza",
   "intro_title_en": "Cleaning services from Clearwater to Orlando",
-  "intro_title_es": "Servicios de limpieza de Clearwater a Orlando",
-  "intro_text_en": "Homes, offices, rentals and job sites. Tell us what you need and we will send you a quote in US dollars.",
-  "intro_text_es": "Casas, oficinas, alquileres y obras. Cuéntanos qué necesitas y te enviamos una cotización en dólares.",
-  "steps_title_en": "How we work",
-  "steps_title_es": "Cómo trabajamos",
+  "zones_text_en": "We serve Clearwater, Tampa, Orlando and the communities in between. Not sure if we cover your ZIP code? Just ask.",
   "steps": [
     {
       "title_en": "Tell us what you need",
@@ -33,18 +27,24 @@
       "text_es": "Nuestro equipo hace el trabajo y tú revisas el resultado. Si falta algo, avísanos enseguida."
     }
   ],
+  "intro_title_es": "Servicios de limpieza de Clearwater a Orlando",
+  "steps_title_en": "How we work",
+  "intro_text_en": "Homes, offices, rentals and job sites. Tell us what you need and we will send you a quote in US dollars.",
   "zones_title_en": "Where we work",
-  "zones_title_es": "Dónde trabajamos",
-  "zones_text_en": "We serve Clearwater, Tampa, Orlando and the communities in between. Not sure if we cover your ZIP code? Just ask.",
   "zones_text_es": "Trabajamos en Clearwater, Tampa, Orlando y las comunidades entre ellas. ¿No sabes si llegamos a tu código postal? Pregúntanos.",
-  "faq_title_en": "Frequently asked questions",
-  "faq_title_es": "Preguntas frecuentes",
-  "quote_title_en": "Request a quote",
-  "quote_title_es": "Pide tu cotización",
-  "quote_text_en": "Prices are given by quote only, in US dollars. Send us a few details and we will get back to you.",
-  "quote_text_es": "Los precios se dan solo mediante cotización, en dólares. Envíanos algunos datos y te contactamos.",
-  "seo_title_en": "All Clean Group | Cleaning Services in Clearwater, Tampa & Orlando, FL",
-  "seo_title_es": "All Clean Group | Servicio de limpieza en Clearwater, Tampa y Orlando, FL",
+  "steps_title_es": "Cómo trabajamos",
+  "intro_text_es": "Casas, oficinas, alquileres y obras. Cuéntanos qué necesitas y te enviamos una cotización en dólares.",
+  "zones_title_es": "Dónde trabajamos",
   "seo_description_en": "House, office, post-construction, move-in/out, Airbnb and deep cleaning from Clearwater to Orlando, Florida. Open every day, 24 hours. Get a quote.",
-  "seo_description_es": "Limpieza de casas, oficinas, post-obra, mudanzas, Airbnb y limpieza profunda de Clearwater a Orlando, Florida. Todos los días, 24 h. Pide cotización."
+  "seo_title_en": "All Clean Group | Cleaning Services in Clearwater, Pinellas, Tampa & Orlando, FL",
+  "carousel_label_en": "Our cleaning services",
+  "quote_title_en": "Request a quote",
+  "seo_description_es": "Limpieza de casas, oficinas, post-obra, mudanzas, Airbnb y limpieza profunda de Clearwater a Orlando, Florida. Todos los días, 24 h. Pide cotización.",
+  "seo_title_es": "All Clean Group | Servicio de limpieza en Clearwater, Pinellas, Tampa y Orlando, FL",
+  "carousel_label_es": "Nuestros servicios de limpieza",
+  "quote_text_en": "Prices are given by quote only, in US dollars. Send us a few details and we will get back to you.",
+  "quote_title_es": "Pide tu cotización",
+  "faq_title_en": "Frequently asked questions",
+  "quote_text_es": "Los precios se dan solo mediante cotización, en dólares. Envíanos algunos datos y te contactamos.",
+  "faq_title_es": "Preguntas frecuentes"
 }
